@@ -109,3 +109,48 @@ while (currentNode = nodeIterator.nextNode()) {
 * treewalker.nextNode() treewalker.currentNode;
 * document.importNode(节点，深/浅拷贝) 拷贝外部节点
 * 不会把原来的节点删掉
+# Element
+* 不同标签 HTMLAnchorElement HTMLButtonElement
+* Element.attributes/id/tagName
+* innerHTML 包含& < >,读取时会转码，写入会解析成节点
+* outerHTML 赋值替换掉当前元素
+* className/classList
+  * classList:add/remove/contains/toggle/item/toString
+* getBoundingClientRect().top/left 视口
+* getBoundingClientRect().left+scroll距网页
+  * 网页元素本身的高宽：
+    * Element.getBoundingClientRect().width/height
+    * Element.offsetHeight/offsetWidth
+    * clientHeight和clientWidth:视觉面积 内容+padding
+  * 浏览器窗口的高和宽：
+    * document.documentElement.clientWidth/clientHeight
+    * IE6 quirks:document.body.clientWidth
+    * 必须在页面加载完成，否则document对象还没生成
+    * 滚动条滚过的长宽:每个元素scrollHeight和scrollWidth
+* Element.offsetParent:position不等于static 最近 上层元素
+* offsetTop offsetLeft:元素左上角距offsetParent左上角
+  * 元素的绝对位置：offsetLeft/offsetTop累加
+  * 元素的相对位置：绝对坐标减去页面滚动
+  * document.documentElement.scrollLeft/scrollTop
+* 相对位置：Element.getBoundingClientRect().left/top
+* 绝对位置：Element.getBoundingClientRect().left/top+document.documentElement.scrollLeft/scrollTop
+* children/childNodes
+* childElementCount===children.length
+* firstElementChild/lastElementChild/nextElementSibling/previousElementSibling
+* closest(CSS选择器) 本身或最近的父元素 
+* match(CSS选择器)
+* Element和document共有的四个方法
+  * getElementsByTagName()
+  * getElementsByClassName()
+  * querySelector()
+  * querySelectorAll()
+* Element.scrollIntoView():true：顶部对齐 false尾部对齐
+* getBoundingClientRect() 视口 边框+padding
+* getClientRects():块级元素一个，行内元素占据多少行
+  * 当前元素在页面上形成的所有矩形
+  * 用于判断行内元素是否换行，以及行内元素的每一行的位置偏移
+  * top,left，bottom,right,width,height
+* Element.insertAdjacentHTML(position，HTML字符串)
+  * 解析HTML字符串生成节点 
+  * beforebegin/beforeend/afterbegin/afterend：元素节点的后面
+* Element.remove()/focus()
