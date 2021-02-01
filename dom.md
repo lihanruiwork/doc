@@ -154,3 +154,79 @@ while (currentNode = nodeIterator.nextNode()) {
   * 解析HTML字符串生成节点 
   * beforebegin/beforeend/afterbegin/afterend：元素节点的后面
 * Element.remove()/focus()
+# window对象:浏览器窗口+顶层对象
+* 全局变量 window的属性
+* window.name/opener/length总框架数
+* window.screenX/screenY：窗口相对于屏幕
+* window.innerHeight/innerWidth 
+* window.outerHeight/outerWidth:视口+滚动条+菜单+边框
+* window.pageXOffset/pageYOffset:滚动距离
+* window.navigator:浏览器信息
+  * navigator.userAgent:浏览器厂商、版本
+  * 识别手机 /mobi/i.test(navigator.userAgent.toLowerCase())
+  * navigator.plugins(插件)/platform(操作系统)/onLine
+  * navigator.geolocation(Geolocation对象地理位置)
+  * navigator.cookieEnabled:浏览器能否存储cookie
+* window.screen：设备信息 width/height:分辨率
+* window.moveTo()/moveBy() 
+* window.scrollTo/scrollBy()：向右向下滚动的像素
+  * window.scrollBy(0,window.innerHeight)：向下滚一屏
+* window.open新建一个浏览器窗口 返回新窗口的引用
+  * (url,名字,提示栏工具条等参数,是否替换history当前记录)
+  * 许多浏览器不允许脚本自动新建窗口,检查一下是否成功
+* window.close() 只对顶层窗口有效
+* window.print()
+  * typeof window.print==”function”
+* window.focus()/getSelection():选中的文本
+* top/parent/self
+  * <a target=_top></a> 在顶层窗口打开链接 _top _self _parent
+* 父窗口和子窗口同源,iframe节点.contentWindow,iframe节点.contentDocument
+* 没有父窗口 window.parent=window.self
+* window.frameElement返回父窗口中DOM节点
+* window.frames[0]是一个window对象
+* iframe元素id或name属性自动成为全局变量
+  * <iframe id=myFrame></iframe> window.myFrame
+* name属性成为子窗口的名称,a标签/frame标签的target属性
+* window对象的事件：
+  * load/error:js语言/js脚本/图像文件不存在,其他事件不会触发
+* 如果脚本网址与网页网址不在同一个域，浏览器不会提供详细的出错信息
+  * 解决办法：在脚本所在的服务器Access-Control-Allow-Origin:*
+  * script标签crossorigin=anonymous,读取文件不需要身份认证
+* URL编码：
+  * 语义字符：数字 字母 - _ . ! ~ * ‘’ ( )
+  * 元字符  ； ， / ? : @ & = + $ # 
+  * 除了以上字符，其他字符必须根据操作系统的默认编码转义，
+  * %加两个大写的十六进制字母UTF-8
+* encodeURI()
+* encodeURIComponent()：元字符也会被转义 参数不会是整个URL
+* decodeURI()/decodeURIComponent() 还原转义后的URL
+* alert()/prompt()/confirm():堵塞效应,页面暂停执行
+* var result = prompt(“您的年龄是：”，25)；
+* 点取消返回null,其他返回输入框的值 
+* 弹出的对话框是浏览器统一规定的样式
+* window.closed:用来检查使用脚本打开的新窗口是否关闭
+# Text节点
+* document.createTextNode(“balabala”);
+* new Text(“balabala”);
+* Text节点.data=Text节点.nodeValue;
+* wholeText:将当前text节点与毗邻的text节点作为一个整体返回
+* length:文本长度
+* nextElementSibling：Text节点最近后面的同级Element节点
+* previousElementSibling
+* appendData()
+* deleteData(子字符串位置，子字符串长度)
+* insertData(插入位置，插入的子字符串)
+* replaceData(替换位置，被替换掉的长度，新加入的子字符串)
+* subStringData(开始位置，子字符串长度)
+* remove()：移除当前Text节点
+* splitText(分割位置) 分割到该位置的字符前结束
+  * 返回分割位置后方的字符串，原Text节点只包含分割位置前方的字符串
+* normalize()：将毗邻的两个text节点合并，在父元素调用
+* DocumentFragment：文档片段
+  * 操作DocumentFragment节点比直接操作DOM树快得多
+  * document.createDocumentFragment()/new DocumentFragment()
+  * DocumentFragment节点本身不能被插入当前文档。
+  * 当它作为appendChild()、insertBefore()、replaceChild()等方法的参数时，是它的所有子节点插入当前文档，而不是它自身。
+  * 一旦DocumentFragment节点被添加进当前文档，它自身就变成了空节点（textContent属性为空字符串），可以被再次使用。
+  * 如果想要保存DocumentFragment节点的内容，可以使用cloneNode方法。
+* children/firstElementChild/lastElementChild/childElementCount
