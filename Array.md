@@ -100,3 +100,19 @@ console.log(b instanceof Object);
       [].concat.call({a:1},{b:2}); 
       [{a:1},{b:2}]
     ```
+# String 基本包装类型的方法
+* charAt
+* charCodeAt 某位置的字符编码
+* concat 可以接收任意多个参数
+* slice/substring 开始位置,结束位置
+ * slice 将负值与长度相加 substring 将负值转换为0
+* substr 开始位置 字符个数  
+ * substr第一个参数加长度 第二个参数转换为0
+* indexOf/lastIndexOf 返回字符串的位置
+* trim()
+* toUpperCase toLowerCase 
+* toLocaleUpperCase toLocaleLowerCase 针对地区
+ * 他们都不会改变原字符串
+* fromCharCode  接受一或多个字符编码将它们转化成字符串
+* console.log(String.fromCharCode(100,111,102,30));
+* localeCompare()字符串在字母表中排序,在参数之前负,地区决定排序结果
